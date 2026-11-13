@@ -6,6 +6,7 @@ import PageNavigation from './components/PageNavigation.jsx';
 import RevisionDeck from './components/RevisionDeck.jsx';
 import SectionNavigation from './components/SectionNavigation.jsx';
 import SiteHeader from './components/SiteHeader.jsx';
+import { OFFICE_HOLDERS_SNAPSHOT } from './data/officeHolders.js';
 import { getStateDossier, REGIONS } from './data/states/index.js';
 
 const THEME_KEY = 'rd_theme';
@@ -104,7 +105,9 @@ export default function App() {
         theme={theme ?? 'system'}
         onThemeToggle={toggleTheme}
       />
-      {activePage === 'home' && <HomePage />}
+      {activePage === 'home' && (
+        <HomePage officeHolders={OFFICE_HOLDERS_SNAPSHOT} />
+      )}
       {activeState && !isRevisionPage && (
         <DossierPage
           key={activeState.slug}
@@ -112,6 +115,7 @@ export default function App() {
           stateName={activeState.name}
           stateSlug={activeState.slug}
           dossier={activeState.dossier}
+          officeHolders={OFFICE_HOLDERS_SNAPSHOT}
         />
       )}
       {activeState && isRevisionPage && (

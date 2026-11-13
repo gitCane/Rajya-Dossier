@@ -1,5 +1,6 @@
 import Footer from './Footer.jsx';
 import LegacyMarkup from './LegacyMarkup.jsx';
+import OfficeHoldersCard from './OfficeHoldersCard.jsx';
 import PageNavigation from './PageNavigation.jsx';
 import SectionNavigation from './SectionNavigation.jsx';
 
@@ -8,6 +9,7 @@ export default function DossierPage({
   stateName,
   stateSlug,
   dossier,
+  officeHolders,
 }) {
   const sectionIndex = dossier.DIMS.findIndex(
     (dimension) => `${stateSlug}-${dimension[0]}` === activePage,
@@ -40,6 +42,12 @@ export default function DossierPage({
                 <b>Covers:</b> {dimension[3]}
               </p>
             </header>
+          )}
+          {activePage === stateSlug && (
+            <OfficeHoldersCard
+              officeHolders={officeHolders}
+              regionName={stateName}
+            />
           )}
           <LegacyMarkup html={content} mapRenderer={dossier.mapSVG} />
           <PageNavigation

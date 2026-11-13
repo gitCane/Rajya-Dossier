@@ -38,7 +38,6 @@ h1,h2,h3,h4{font-family:var(--f-d);text-wrap:balance;margin:0;line-height:1.15}
 .btn.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .btn.sm{padding:5px 9px;font-size:12px}
 /* home */
-.home-page{padding-bottom:54px}
 .map-explorer{padding-block:34px 38px}
 .map-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:22px}
 .map-heading h1{font-size:clamp(30px,4.2vw,46px);letter-spacing:-.035em;margin:7px 0}
@@ -83,6 +82,17 @@ h1,h2,h3,h4{font-family:var(--f-d);text-wrap:balance;margin:0;line-height:1.15}
 .glance-list dt{font:500 10px var(--f-m);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .glance-list dd{margin:0;font-size:13px;line-height:1.35}
 .glance-note{margin:8px 0 0;color:var(--muted);font-size:11px;line-height:1.35}
+.officeholders{padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;margin:14px 0}
+.officeholders-compact{padding:12px;margin:12px 0}
+.officeholders>.eyebrow{margin:0 0 10px}
+.officeholder-list{display:grid;gap:9px;margin:0}
+.officeholder-list>div{display:grid;gap:2px}
+.officeholder-list dt{font:500 10px var(--f-m);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.officeholder-list dd{margin:0;font-size:13px;line-height:1.35}
+.officeholder-list small,.officeholders-message,.officeholders-source{color:var(--muted);font-size:11px;line-height:1.4}
+.officeholders-message{margin:0}
+.officeholders-source{margin:10px 0 0}
+.officeholders a{color:var(--accent);text-underline-offset:2px}
 .preview-description{color:var(--muted);font-size:14px;margin:13px 0 18px}
 .preview-link{display:flex;width:100%;justify-content:space-between;align-items:center;text-decoration:none}
 .ut-explorer{margin-top:8px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px}

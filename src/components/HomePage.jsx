@@ -2,6 +2,7 @@ import { lazy, Suspense, useState } from 'react';
 import { DIMS } from '../data/states/rajasthan.js';
 import { REGIONS } from '../data/states/index.js';
 import { REGION_GLANCE, UNION_TERRITORIES } from '../data/regionGlance.js';
+import OfficeHoldersCard from './OfficeHoldersCard.jsx';
 
 const IndiaMap = lazy(() => import('./IndiaMap.jsx'));
 
@@ -9,7 +10,7 @@ function toStateSlug(stateName) {
   return stateName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-export default function HomePage() {
+export default function HomePage({ officeHolders }) {
   const [query, setQuery] = useState('');
   const [previewState, setPreviewState] = useState(null);
   const totalStates = REGIONS.reduce(
@@ -35,11 +36,6 @@ export default function HomePage() {
         <div className="map-heading">
           <div>
             <p className="eyebrow">State dossiers · UPSC revision</p>
-            <h1 id="map-title">Choose a state or UT to explore</h1>
-            <p>
-              Select a region to open its dossier. All Union Territories are
-              red and marked with clickable stars.
-            </p>
           </div>
           <label className="state-search">
             <span className="sr-only">Find and highlight a state or UT</span>
@@ -67,22 +63,6 @@ export default function HomePage() {
           </figure>
 
           <aside className="map-sidebar">
-            <div className="ut-explorer">
-              <p className="eyebrow">Explore Union Territories</p>
-              <div className="ut-buttons">
-                {UNION_TERRITORIES.map((territory) => (
-                  <a
-                    className="ut-chip"
-                    href={`#${toStateSlug(territory)}`}
-                    key={territory}
-                    onFocus={() => setPreviewState(territory)}
-                    onPointerEnter={() => setPreviewState(territory)}
-                  >
-                    {territory}
-                  </a>
-                ))}
-              </div>
-            </div>
             <div className="state-preview" aria-live="polite">
               {selectedState && selectedRegion ? (
                 <>
@@ -97,12 +77,14 @@ export default function HomePage() {
                     <div><dt>Economy</dt><dd>{selectedRegion.economy}</dd></div>
                     <div><dt>UPSC focus</dt><dd>{selectedRegion.upsc}</dd></div>
                   </dl>
+                  <OfficeHoldersCard
+                    compact
+                    officeHolders={officeHolders}
+                    regionName={selectedState}
+                  />
                   <a className="btn pri preview-link" href={`#${toStateSlug(selectedState)}`}>
                     Open {selectedState} dossier <span aria-hidden="true">→</span>
                   </a>
-                  <p className="glance-note">
-                    Current office-holder names change; check the latest current affairs.
-                  </p>
                 </>
               ) : (
                 <>
